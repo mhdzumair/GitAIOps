@@ -7,7 +7,7 @@
     "auth": {
       "type": "oauth",
       "client_url": "https://github.com/login/oauth/authorize",
-      "scope": "api",
+      "scope": "repo",
       "authorization_url": "https://github.com/login/oauth/access_token",
       "authorization_content_type": "application/json",
       "verification_tokens": {
