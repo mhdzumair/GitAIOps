@@ -13,7 +13,7 @@ To install GitAIOps, you need to clone the repository, install the dependencies,
 2. Clone the GitAIOps repository:
 
     ```bash
-    git clone https://github.com/yourusername/GitAIOps.git
+    git clone https://github.com/mhdzumair/GitAIOps.git
     ```
 
 3. Navigate to the GitAIOps directory:
