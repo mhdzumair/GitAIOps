@@ -1,4 +1,3 @@
-import logging
 import os
 
 
@@ -9,7 +8,7 @@ def get_api_token_header(service, request):
     if request.headers.get("Authorization"):
         return {"Authorization": request.headers.get("Authorization")}
 
-    if private_token := os.environ.get(f"{service}_TOKEN"):
-        return {"PRIVATE-TOKEN": private_token}
+    if private_token := os.environ.get(f"{service.upper()}_TOKEN"):
+        return {"Authorization": f"Bearer {private_token}"}
 
-    raise RuntimeError(f"Missing {service}_TOKEN")
+    raise RuntimeError(f"Missing {service.upper()}_TOKEN")
