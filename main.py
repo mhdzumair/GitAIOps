@@ -46,6 +46,10 @@ async def ai_plugin(request: Request):
         plugin_info["api"]["url"] = f"{host_url}openapi.json"
         if "localhost" in host_url or "127.0.0.1" in host_url:
             plugin_info["auth"] = {"type": "none"}
+        else:
+            plugin_info["auth"]["verification_tokens"]["openai"] = os.getenv(
+                "OPENAI_PLUGIN_VERIFICATION_TOKEN"
+            )
 
     return plugin_info
 
