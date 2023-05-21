@@ -22,16 +22,17 @@ async def github_graphql_api(request: Request, query: GraphQLQuery):
     transport = AIOHTTPTransport(url=github_graphql_url, headers=headers)
 
     # Create the GraphQL client
-    async with Client(transport=transport, fetch_schema_from_transport=True) as session:
+    async with Client(transport=transport) as session:
         # Define the GraphQL query
         gql_query = gql(query.query)
 
         # Execute the query
         try:
             result = await session.execute(gql_query)
-        except Exception as e:
+        except Exception as error:
             raise HTTPException(
-                status_code=400, detail=f"Error executing GraphQL query: {e}"
+                status_code=400,
+                detail=f"Error executing GraphQL query. failure reason: {error}",
             )
 
     return result

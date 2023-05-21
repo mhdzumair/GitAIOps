@@ -26,10 +26,7 @@ async def gitlab_graphql_api(request: Request, query: GraphQLQuery):
     transport = AIOHTTPTransport(url="https://gitlab.com/api/graphql", headers=headers)
 
     # Create the GraphQL client
-    async with Client(
-        transport=transport,
-        fetch_schema_from_transport=True,
-    ) as session:
+    async with Client(transport=transport) as session:
         # Define the GraphQL query
         gql_query = gql(query.query)
 
