@@ -1,7 +1,7 @@
 {
     "schema_version": "v1",
     "name_for_human": "GitAIOps GitHub",
-    "name_for_model": "gitaiops github",
+    "name_for_model": "gitaiops_github",
     "description_for_human": "Plugin for managing GitHub CI/CD workflows.",
     "description_for_model": "Use this plugin to interact with GitHub CI/CD workflows.",
     "auth": {
