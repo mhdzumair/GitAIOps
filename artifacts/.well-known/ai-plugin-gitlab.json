@@ -1,0 +1,22 @@
+{
+    "schema_version": "v1",
+    "name_for_human": "GitAIOps GitLab",
+    "name_for_model": "gitaiops gitlab",
+    "description_for_human": "Plugin for managing GitLab CI/CD workflows.",
+    "description_for_model": "Use this plugin to interact with GitLab CI/CD workflows.",
+    "auth": {
+      "type": "oauth",
+      "client_url": "https://gitlab.com/oauth/authorize",
+      "scope": "api",
+      "authorization_url": "https://gitlab.com/oauth/token",
+      "authorization_content_type": "application/json"
+    },
+    "api": {
+        "type": "openapi",
+        "url": "http://localhost/openapi.json",
+        "is_user_authenticated": false
+    },
+    "logo_url": "http://localhost/artifacts/logo.png",
+    "contact_email": "mhdzumair@gmail.com",
+    "legal_info_url": "http://localhost/legal"
+}

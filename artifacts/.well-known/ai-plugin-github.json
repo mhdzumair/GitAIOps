@@ -1,0 +1,22 @@
+{
+    "schema_version": "v1",
+    "name_for_human": "GitAIOps GitHub",
+    "name_for_model": "gitaiops github",
+    "description_for_human": "Plugin for managing GitHub CI/CD workflows.",
+    "description_for_model": "Use this plugin to interact with GitHub CI/CD workflows.",
+    "auth": {
+      "type": "oauth",
+      "client_url": "https://github.com/login/oauth/authorize",
+      "scope": "api",
+      "authorization_url": "https://github.com/login/oauth/access_token",
+      "authorization_content_type": "application/json"
+    },
+    "api": {
+        "type": "openapi",
+        "url": "http://localhost/openapi.json",
+        "is_user_authenticated": false
+    },
+    "logo_url": "http://localhost/artifacts/logo.png",
+    "contact_email": "mhdzumair@gmail.com",
+    "legal_info_url": "http://localhost/legal"
+}
