@@ -24,7 +24,7 @@ async def github_rest_api(request: Request, query: RestQuery):
     }
     headers.update(get_api_token_header("github", request))
 
-    url = f"{github_api_url}/{query.endpoint}"
+    url = f"{github_api_url}/{query.endpoint.lstrip('/')}"
 
     if query.data:
         try:

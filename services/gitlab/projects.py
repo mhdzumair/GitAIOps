@@ -19,9 +19,9 @@ async def gitlab_trace_log(
     request: Request, project_id: str, job_id: str, page: int = 1, per_page: int = 8000
 ):
     """
-    To retrieve the trace log for a specific job in a GitLab project,
-    provide the project ID and job ID. also specify the page number and number of characters per page for pagination.
-    The response will include the trace log and pagination details.
+    Retrieve a GitLab project's job trace log.
+    Provide project ID, job ID, page number, and characters per page.
+    Always check pagination in the response for more data.
     """
 
     url = f"{gitlab_api_url}/projects/{quote_plus(project_id)}/jobs/{job_id}/trace"
@@ -67,10 +67,10 @@ async def gitlab_merge_request_diff(
     diff_per_page: int = 6000,
 ):
     """
-    Get a merge request's diff in a GitLab project.
-    Provide project ID and merge request ID.
-    You can also specify the page number and number of change files per page for pagination,
-    as well as the diff page number and number of diff characters per page for diff content pagination.
+    Get a GitLab project's merge request diff.
+    Provide project ID, merge request ID, page number, and change files per page.
+    Also specify diff page number and diff characters per page for diff content pagination.
+    Always check both pagination details in the response for more data.
     """
 
     url = f"{gitlab_api_url}/projects/{quote_plus(project_id)}/merge_requests/{merge_request_id}/diffs"
