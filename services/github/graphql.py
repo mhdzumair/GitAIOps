@@ -3,7 +3,7 @@ from gql import Client, gql
 from gql.transport.aiohttp import AIOHTTPTransport
 
 from services.schemas import GraphQLQuery
-from utils.api_config import get_api_token
+from utils.api_config import get_api_token_header
 
 router = APIRouter()
 
@@ -17,7 +17,7 @@ async def github_graphql_api(request: Request, query: GraphQLQuery):
     """
 
     github_graphql_url = "https://api.github.com/graphql"
-    headers = {"Authorization": f"Bearer {get_api_token('github', request)}"}
+    headers = get_api_token_header("github", request)
 
     transport = AIOHTTPTransport(url=github_graphql_url, headers=headers)
 

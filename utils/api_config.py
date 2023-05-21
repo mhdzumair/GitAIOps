@@ -2,16 +2,14 @@ import logging
 import os
 
 
-def get_api_token(service, request):
+def get_api_token_header(service, request):
     """
     Return the API token for the given service.
     """
-    if token := request.headers.get("Authorization"):
-        api_token = token.lstrip("Bearer ")
-    else:
-        api_token = os.environ.get(f"{service}_TOKEN")
+    if request.headers.get("Authorization"):
+        return {"Authorization": request.headers.get("Authorization")}
 
-    if not api_token:
-        raise RuntimeError(f"Missing {service}_TOKEN")
-    logging.info(f"token for {service} is {api_token}")
-    return api_token
+    if private_token := os.environ.get(f"{service}_TOKEN"):
+        return {"PRIVATE-TOKEN": private_token}
+
+    raise RuntimeError(f"Missing {service}_TOKEN")

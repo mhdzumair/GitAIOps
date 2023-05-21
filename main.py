@@ -22,6 +22,8 @@ app.add_middleware(
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
+logging.getLogger("gql.transport.aiohttp").setLevel(logging.WARNING)
+logging.getLogger("httpx:HTTP").setLevel(logging.WARNING)
 
 # Add routes from each service
 app.include_router(services_router, prefix="/services")

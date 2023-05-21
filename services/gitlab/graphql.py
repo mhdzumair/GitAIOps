@@ -1,5 +1,3 @@
-import logging
-
 from fastapi import APIRouter, HTTPException, Request
 from gql import Client, gql
 from gql.transport.aiohttp import AIOHTTPTransport
@@ -7,10 +5,9 @@ from gql.transport.exceptions import TransportQueryError
 from graphql import GraphQLError
 
 from services.schemas import GraphQLQuery
-from utils.api_config import get_api_token
+from utils.api_config import get_api_token_header
 
 router = APIRouter()
-logging.getLogger("gql.transport.aiohttp").setLevel(logging.WARNING)
 
 
 @router.post("/", operation_id="gitlab_graphql_api")
@@ -20,14 +17,13 @@ async def gitlab_graphql_api(request: Request, query: GraphQLQuery):
     The result will be the response from the GitLab API.
     """
 
+    headers = {
+        "Content-Type": "application/json",
+    }
+    headers.update(get_api_token_header("gitlab", request))
+
     # Define the GraphQL transport
-    transport = AIOHTTPTransport(
-        url="https://gitlab.com/api/graphql",
-        headers={
-            "Content-type": "application/json",
-            "PRIVATE-TOKEN": get_api_token("gitlab", request),
-        },
-    )
+    transport = AIOHTTPTransport(url="https://gitlab.com/api/graphql", headers=headers)
 
     # Create the GraphQL client
     async with Client(
@@ -49,6 +45,11 @@ async def gitlab_graphql_api(request: Request, query: GraphQLQuery):
             raise HTTPException(
                 status_code=400,
                 detail=f"Error executing GraphQL query. failure reason: {error.message}",
+            )
+        except Exception as error:
+            raise HTTPException(
+                status_code=400,
+                detail=f"Error executing GraphQL query. failure reason: {error}",
             )
 
     return result
