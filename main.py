@@ -1,11 +1,12 @@
 import json
 import logging
 import os
+from pathlib import Path
 
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
+from fastapi.responses import HTMLResponse
 from services import services_router
 
 app = FastAPI()
@@ -21,6 +22,8 @@ app.add_middleware(
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
+logging.getLogger("gql.transport.aiohttp").setLevel(logging.WARNING)
+logging.getLogger("httpx:HTTP").setLevel(logging.WARNING)
 
 # Add routes from each service
 app.include_router(services_router, prefix="/services")
@@ -42,14 +45,19 @@ async def ai_plugin(request: Request):
     with open(file_path) as json_file:
         plugin_info = json.load(json_file)
         plugin_info["logo_url"] = f"{host_url}artifacts/logo.png"
-        plugin_info["legal_info_url"] = f"{host_url}legal"
+        plugin_info["legal_info_url"] = f"{host_url}"
         plugin_info["api"]["url"] = f"{host_url}openapi.json"
         if "localhost" in host_url or "127.0.0.1" in host_url:
             plugin_info["auth"] = {"type": "none"}
+        else:
+            plugin_info["auth"]["verification_tokens"]["openai"] = os.getenv(
+                "OPENAI_PLUGIN_VERIFICATION_TOKEN"
+            )
 
     return plugin_info
 
 
-@app.get("/legal")
-async def get_legal_doc():
-    return FileResponse("legal.md")
+@app.get("/", response_class=HTMLResponse)
+async def home():
+    html_content = Path("artifacts/index.html").read_text()
+    return html_content

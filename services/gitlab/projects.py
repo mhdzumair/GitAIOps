@@ -4,7 +4,7 @@ import httpx
 from fastapi import APIRouter, HTTPException, Request
 
 from services.gitlab.schemas import MergeRequestDiffResponse, TraceLogResponse
-from utils.api_config import get_api_token
+from utils.api_config import get_api_token_header
 from utils.log_scrubber import scrub_log
 from utils.paginator import paginate_content
 
@@ -28,8 +28,8 @@ async def gitlab_trace_log(
 
     headers = {
         "Content-Type": "application/json",
-        "PRIVATE-TOKEN": get_api_token("gitlab", request),
     }
+    headers.update(get_api_token_header("gitlab", request))
 
     # Send the request and get the response
     async with httpx.AsyncClient() as client:
@@ -76,8 +76,8 @@ async def gitlab_merge_request_diff(
     url = f"{gitlab_api_url}/projects/{quote_plus(project_id)}/merge_requests/{merge_request_id}/diffs"
     headers = {
         "Content-Type": "application/json",
-        "PRIVATE-TOKEN": get_api_token("gitlab", request),
     }
+    headers.update(get_api_token_header("gitlab", request))
 
     # Send the request and get the response
     async with httpx.AsyncClient() as client:

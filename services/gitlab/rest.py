@@ -4,7 +4,7 @@ import httpx
 from fastapi import APIRouter, HTTPException, Request
 
 from services.schemas import RestQuery
-from utils.api_config import get_api_token
+from utils.api_config import get_api_token_header
 
 router = APIRouter()
 gitlab_api_url = "https://gitlab.com/api/v4"
@@ -32,8 +32,8 @@ async def gitlab_rest_api(request: Request, query: RestQuery):
     url = f"{gitlab_api_url}/{query.endpoint.lstrip('/')}"
     headers = {
         "Content-Type": "application/json",
-        "PRIVATE-TOKEN": get_api_token("gitlab", request),
     }
+    headers.update(get_api_token_header("gitlab", request))
 
     # Send the request and get the response
     async with httpx.AsyncClient() as client:

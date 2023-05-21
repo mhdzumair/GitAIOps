@@ -2,7 +2,7 @@ import httpx
 from fastapi import APIRouter, Request
 
 from services.schemas import RestQuery
-from utils.api_config import get_api_token
+from utils.api_config import get_api_token_header
 
 router = APIRouter()
 
@@ -18,8 +18,8 @@ async def github_rest_api(request: Request, query: RestQuery):
     github_api_url = "https://api.github.com"
     headers = {
         "Accept": "application/vnd.github.v3+json",
-        "Authorization": f"Bearer {get_api_token('github', request)}",
     }
+    headers.update(get_api_token_header("github", request))
 
     url = f"{github_api_url}/{query.endpoint}"
 

@@ -9,7 +9,10 @@
       "client_url": "https://gitlab.com/oauth/authorize",
       "scope": "api",
       "authorization_url": "https://gitlab.com/oauth/token",
-      "authorization_content_type": "application/json"
+      "authorization_content_type": "application/json",
+      "verification_tokens": {
+        "openai": ""
+      }
     },
     "api": {
         "type": "openapi",
@@ -18,5 +21,5 @@
     },
     "logo_url": "http://localhost/artifacts/logo.png",
     "contact_email": "mhdzumair@gmail.com",
-    "legal_info_url": "http://localhost/legal"
+    "legal_info_url": "http://localhost"
 }
