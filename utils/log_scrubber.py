@@ -2,6 +2,19 @@ import re
 
 
 def scrub_log(log):
+    """
+    Scrubs sensitive information from a log string.
+
+    Uses regular expressions to identify patterns that may correspond to sensitive information,
+    such as API keys, IP addresses, email addresses, and passwords.
+    When it finds a match, it replaces the sensitive information with asterisks (***).
+
+    Args:
+        log (str): The log string to be scrubbed.
+
+    Returns:
+        str: The scrubbed log string.
+    """
     # Patterns for different types of sensitive information
     patterns = [
         r"[a-zA-Z0-9]{20,}",  # API keys

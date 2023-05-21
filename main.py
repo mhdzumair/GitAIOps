@@ -5,11 +5,12 @@ from pathlib import Path
 
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.staticfiles import StaticFiles
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, FileResponse
+
 from services import services_router
 
 app = FastAPI()
+SERVICE_NAME = os.getenv("GITAIOPS_SERVICE_NAME", "gitlab")
 
 # Add CORS middleware
 app.add_middleware(
@@ -28,14 +29,13 @@ logging.getLogger("httpx").setLevel(logging.WARNING)
 # Add routes from each service
 app.include_router(services_router, prefix="/services")
 
-# Serve static files from the /artifacts directory at the root of the domain
-app.mount("/artifacts", StaticFiles(directory="artifacts"), name="artifacts")
-
-SERVICE_NAME = os.getenv("GITAIOPS_SERVICE_NAME", "gitlab")
-
 
 @app.get("/.well-known/ai-plugin.json", include_in_schema=False)
 async def ai_plugin(request: Request):
+    """
+    This endpoint returns the AI plugin information as a JSON object.
+    The information is read from a JSON file and updated with the current host URL and authentication details.
+    """
     host_url = str(request.base_url)
     file_path = f"artifacts/.well-known/ai-plugin-{SERVICE_NAME}.json"
 
@@ -67,5 +67,18 @@ async def ai_plugin(request: Request):
 
 @app.get("/", response_class=HTMLResponse, include_in_schema=False)
 async def get_home():
+    """
+    This endpoint returns the home page of the API.
+    The content is read from an HTML file and returned as an HTML response.
+    """
     html_content = Path("artifacts/index.html").read_text(encoding="utf-8")
     return html_content
+
+
+@app.get("/artifacts/logo.png", include_in_schema=False)
+async def read_logo():
+    """
+    This endpoint returns the logo image file.
+    The image is read from the file system and returned as a file response.
+    """
+    return FileResponse("artifacts/logo.png")
