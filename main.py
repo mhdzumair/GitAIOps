@@ -1,11 +1,12 @@
 import json
 import logging
 import os
+from pathlib import Path
 
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
+from fastapi.responses import HTMLResponse
 from services import services_router
 
 app = FastAPI()
@@ -54,6 +55,7 @@ async def ai_plugin(request: Request):
     return plugin_info
 
 
-@app.get("/legal")
-async def get_legal_doc():
-    return FileResponse("legal.md")
+@app.get("/", response_class=HTMLResponse)
+async def home():
+    html_content = Path("artifacts/index.html").read_text()
+    return html_content
