@@ -1,3 +1,4 @@
+import logging
 import os
 
 
@@ -12,4 +13,5 @@ def get_api_token(service, request):
 
     if not api_token:
         raise RuntimeError(f"Missing {service}_TOKEN")
+    logging.info(f"token for {service} is {api_token}")
     return api_token
