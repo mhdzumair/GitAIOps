@@ -53,7 +53,7 @@ GitAIOps is designed to be used with ChatGPT. Once the plugin is installed, you 
   - provide feedback security.
   - provide feedback code optimization.
   - provide unit test cases.
-- Debugging pipeline error (experimental support for scrubbing sensitive data. see [scrub_log function](https://github.com/mhdzumair/GitAIOps/blob/main/utils/log_scrubber.py#L4)).
+- Debugging pipeline error (experimental support for scrubbing sensitive data. see [scrub_log function](https://github.com/mhdzumair/GitAIOps/blob/main/utils/log_scrubber.py#L26)).
 - Update merge request descriptions.
 - And much more! (Basically whatever thing that can do with APIs)
 
