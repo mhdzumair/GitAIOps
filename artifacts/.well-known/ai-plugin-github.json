@@ -2,8 +2,8 @@
     "schema_version": "v1",
     "name_for_human": "GitAIOps GitHub",
     "name_for_model": "gitaiops_github",
-    "description_for_human": "Plugin for managing GitHub CI/CD workflows.",
-    "description_for_model": "Use this plugin to interact with GitHub CI/CD workflows.",
+    "description_for_human": "Comprehensive solution for managing GitHub CI/CD workflows. Simplifies complex tasks and boosts efficiency.",
+    "description_for_model": "GitAIOps GitHub is a solution that facilitates interaction with GitHub CI/CD workflows. It assists with reviewing pull requests, troubleshooting pipeline errors, updating pull request descriptions, and more.",
     "auth": {
       "type": "oauth",
       "client_url": "https://github.com/login/oauth/authorize",
