@@ -1,6 +1,7 @@
 from fastapi import APIRouter, HTTPException, Request
 from gql import Client, gql
 from gql.transport.aiohttp import AIOHTTPTransport
+from graphql import GraphQLSyntaxError
 
 from services.schemas import GraphQLQuery
 from utils.api_config import get_api_token_header
@@ -24,7 +25,13 @@ async def github_graphql_api(request: Request, query: GraphQLQuery):
     # Create the GraphQL client
     async with Client(transport=transport) as session:
         # Define the GraphQL query
-        gql_query = gql(query.query)
+        try:
+            gql_query = gql(query.query)
+        except (GraphQLSyntaxError, Exception) as error:
+            raise HTTPException(
+                status_code=400,
+                detail=f"Error defining GraphQL query. failure reason: {error}",
+            )
 
         # Execute the query
         try:
