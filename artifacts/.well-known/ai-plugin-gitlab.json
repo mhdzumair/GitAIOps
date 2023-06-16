@@ -1,9 +1,9 @@
 {
     "schema_version": "v1",
-    "name_for_human": "GitAIOps GitLab",
-    "name_for_model": "gitaiops_gitlab",
-    "description_for_human": "Unofficial tool for GitLab CI/CD workflows. Enhances productivity.",
-    "description_for_model": "GitAIOps GitLab is an unofficial solution that enables interaction with GitLab CI/CD workflows. It can be used to review merge requests, debug pipeline errors, update merge request descriptions, and more.",
+    "name_for_human": "GitAIOps",
+    "name_for_model": "gitaiops",
+    "description_for_human": "Unofficial tool for GitLab CI/CD workflows. Streamlines merge request reviews, pipeline debugging, and more.",
+    "description_for_model": "GitAIOps is an unofficial solution that enables interaction with GitLab CI/CD workflows. It can be used to review merge requests, debug pipeline errors, update merge request descriptions, and more.",
     "auth": {
       "type": "oauth",
       "client_url": "https://gitlab.com/oauth/authorize",
