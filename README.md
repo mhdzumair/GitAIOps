@@ -8,8 +8,35 @@ GitAIOps is a ChatGPT plugin that enables ChatGPT to interact with Git services,
 
 The GitAIOps plugins are currently submitted for review in the ChatGPT plugin store and can be used by up to 15 plugin developers for testing. Please note that these are unverified plugins. Here are the links to the deployed plugins:
 
-- GitAIOps GitLab: [https://gitaiops.onrender.com](https://gitaiops.onrender.com)
+- GitAIOps: [https://gitaiops.onrender.com](https://gitaiops.onrender.com)
 - GitAIOps GitHub: [https://gitaiops-github.onrender.com](https://gitaiops-github.onrender.com)
+
+## Usage
+
+GitAIOps is designed to be used with ChatGPT. Once the plugin is installed, you can ask ChatGPT to perform actions on Git services. Here are some of the things you can do:
+- Ability review merge requests
+  - provide feedback security.
+  - provide feedback code optimization.
+  - provide unit test cases.
+- Debugging pipeline error (experimental support for scrubbing sensitive data. see [scrub_log function](https://github.com/mhdzumair/GitAIOps/blob/main/utils/log_scrubber.py#L26)).
+- Update merge request descriptions.
+- And much more! (Basically whatever thing that can do with APIs)
+
+Please note that using this plugin requires a basic understanding of the GitLab and GitHub APIs. Also, be aware that the plugin interacts with data from your Git services, and it's your responsibility to ensure that this data does not contain sensitive information.
+
+## Example Prompt
+> - "I have created a merge request [mr link]. Write a code review for it, focusing on best practices such as code maintainability, security vulnerability and performance."
+> - "Can you identify the problem in the job link [job link] and provide a detailed explanation of what went wrong and how it can be fixed?"
+> - "Please modify the title and description of the merge request based on the modifications made in the merge request located at the following URL: [mr link]"
+
+You can find conversations screenshots in the [example](artifacts/example) folder.
+
+
+## Supported Git Services
+
+- GitLab
+- GitHub
+- More to come!
 
 
 ## Local Installation
@@ -46,32 +73,6 @@ Now, you can specify the plugin URL as "localhost:8000" in your ChatGPT settings
 
 You also need to store the API tokens for GitLab (`GITLAB_TOKEN`) and GitHub (`GITHUB_TOKEN`) in your environment variables. These tokens allow GitAIOps to authenticate with the Git services and perform actions.
 
-## Usage
-
-GitAIOps is designed to be used with ChatGPT. Once the plugin is installed, you can ask ChatGPT to perform actions on Git services. Here are some of the things you can do:
-- Ability review merge requests
-  - provide feedback security.
-  - provide feedback code optimization.
-  - provide unit test cases.
-- Debugging pipeline error (experimental support for scrubbing sensitive data. see [scrub_log function](https://github.com/mhdzumair/GitAIOps/blob/main/utils/log_scrubber.py#L26)).
-- Update merge request descriptions.
-- And much more! (Basically whatever thing that can do with APIs)
-
-Please note that using this plugin requires a basic understanding of the GitLab and GitHub APIs. Also, be aware that the plugin interacts with data from your Git services, and it's your responsibility to ensure that this data does not contain sensitive information.
-
-## Example Prompt
-> - "I have created a merge request [mr link]. Write a code review for it, focusing on best practices such as code maintainability, security vulnerability and performance."
-> - "Can you identify the problem in the job link [job link] and provide a detailed explanation of what went wrong and how it can be fixed?"
-> - "Please modify the title and description of the merge request based on the modifications made in the merge request located at the following URL: [mr link]"
-
-You can find conversations screenshots in the [example](artifacts/example) folder.
-
-
-## Supported Git Services
-
-- GitLab
-- GitHub
-- More to come!
 
 ## Security and Compliance
 
