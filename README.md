@@ -2,14 +2,13 @@
 
 ![GitAIOps Logo](artifacts/logo.png)
 
-GitAIOps is a ChatGPT plugin that enables ChatGPT to interact with Git services, such as GitLab and GitHub. It provides a set of API endpoints that allow ChatGPT to execute Git services API requests.
+GitAIOps is a ChatGPT plugin that enables ChatGPT to interact with GitLab's CI/CD workflows. It provides a set of API endpoints that allow ChatGPT to execute GitLab API requests.
 
-## Access to Unverified Plugins
+## Access to Verified Plugin
 
-The GitAIOps plugins are currently submitted for review in the ChatGPT plugin store and can be used by up to 15 plugin developers for testing. Please note that these are unverified plugins. Here are the links to the deployed plugins:
+The GitAIOps plugin is officially available in the ChatGPT plugin store. You can access it directly from the store or use the link to the deployed plugin:
 
 - GitAIOps: [https://gitaiops.onrender.com](https://gitaiops.onrender.com)
-- GitAIOps GitHub: [https://gitaiops-github.onrender.com](https://gitaiops-github.onrender.com)
 
 ## Usage
 
