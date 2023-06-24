@@ -72,3 +72,12 @@ async def get_home():
     """
     html_content = Path("artifacts/index.html").read_text(encoding="utf-8")
     return html_content
+
+
+@app.get("/artifacts/logo.png", include_in_schema=False)
+async def read_logo():
+    """
+    This endpoint returns the logo image file.
+    The image is read from the file system and returned as a file response.
+    """
+    return FileResponse("artifacts/logo.png")
