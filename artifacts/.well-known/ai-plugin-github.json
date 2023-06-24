@@ -19,7 +19,7 @@
         "url": "http://localhost/openapi.json",
         "is_user_authenticated": false
     },
-    "logo_url": "http://localhost/artifacts/logo.png",
+    "logo_url": "https://raw.githubusercontent.com/mhdzumair/GitAIOps/main/artifacts/logo.png",
     "contact_email": "mhdzumair@gmail.com",
     "legal_info_url": "http://localhost"
 }
